@@ -23,7 +23,7 @@ app.use((_, res, __) => {
         message: `Not such route`,
         data: 'Not found',
     })
-});
+})
 
 app.use((err, _, res, __) => {
     console.log(err.stack)
@@ -34,7 +34,6 @@ app.use((err, _, res, __) => {
         data: 'Internal Server Error',
     })
 })
-
 
 mongoose.connect(DB_HOST, {
     useNewUrlParser: true,

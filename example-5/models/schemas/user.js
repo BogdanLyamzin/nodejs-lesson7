@@ -1,4 +1,5 @@
 const {Schema} = require("mongoose");
+const bcrypt = require("bcryptjs")
 
 const userSchema = Schema({
     login: {
@@ -16,5 +17,13 @@ const userSchema = Schema({
         minLength: 6
     }
 });
+
+userSchema.methods.setPassword = function(password){
+    this.password = bcrypt.hashSync(password, bcrypt.genSaltSync())
+}
+
+userSchema.methods.validPassword = function(password){
+    return bcrypt.compareSync(password, this.password)
+}
 
 module.exports = userSchema;
