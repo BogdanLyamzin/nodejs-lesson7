@@ -16,7 +16,7 @@ const auth = (req, res, next)=> {
                 status: "error",
                 code: 401,
                 message: "You have no provileg"
-            }))
+            });
         }
         req.user = user;
         next()
@@ -81,8 +81,21 @@ router.post('/login', async (req, res, next) => {
     })
 })
 
-router.post("/profile", auth, (req, res, next)=> {
-  console.log(req.user)
+router.get("/orders", auth, async (req, res, next)=> {
+  const {id} = req.user;
+    try {
+        const orders = await Orders.find({_id: id});
+        res.json({
+            status: "success",
+            code: 200,
+            data: {
+                result: orders
+            }
+        })
+    }
+    catch(error){
+        next(error);
+    }
 })
 
 module.exports = router
