@@ -1,5 +1,5 @@
-const userSchema = require("./user");
+const emailSchema = require("./email");
 
 module.exports = {
-    userSchema
+    emailSchema
 }

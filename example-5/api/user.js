@@ -91,7 +91,7 @@ router.get("/orders", auth, async (req, res, next)=> {
             data: {
                 result: orders
             }
-        })
+        });
     }
     catch(error){
         next(error);
